@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">Agastiyan-ver-1.0</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Agastiyan</string>
+    <string name="nav_header_subtitle">agastiyan@agastiyan.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="agas_website">www.agastiyan.com</string>
+
+    <string name="et_hint_name">Name</string>
+    <string name="et_hint_pass">Password</string>
+    <string name="et_hint_email">Email</string>
+    <string name="et_hint_weight">Total Weight</string>
+    <string name="bt_login_text">Login</string>
+    <string name="tv_create_acc_txt">No account yet? Create one</string>
+    <string name="tv_forget_pass">Forget Password</string>
+
+    <string name="nfc_icon_text">Tap the NFC icon for scan</string>
+    <string name="qr_icon_text">Tap the QR icon for scan</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Scan strings-->
+    <string name="title_activity_product">Product Details</string>
+    <string name="lbl_size">SIZE</string>
+    <string name="lbl_Manufacture_by">MANUFACTURED BY</string>
+    <string name="lbl_model">MODEL</string>
+    <string name="lbl_color">COLOUR</string>
+    <string name="btn_buy_now">BUY NOW</string>
+    <string name="btn_description">DESCRIPTION</string>
+    <string name="msg_no_ticket_found">No Product found. Try scanning valid data/</string>
+    <string name="lbl_scan_activity">Scan QR Code</string>
+
+</resources>
