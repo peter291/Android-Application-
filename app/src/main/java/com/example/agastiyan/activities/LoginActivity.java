@@ -3,6 +3,7 @@ package com.example.agastiyan.activities;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -65,13 +66,14 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                // volleyStringRequest();
-                Intent intent =new Intent(LoginActivity.this,MainActivity.class);
+
+                volleyStringRequest();
+                /*Intent intent =new Intent(LoginActivity.this,MainActivity.class);
                 intent.putExtra("for_user","kingsley");
                 intent.putExtra("for_id","5523946417946624");
 
                 startActivity(intent);
-                finish();
+                finish();*/
             }
         });
 
@@ -79,34 +81,43 @@ public class LoginActivity extends AppCompatActivity {
 
     public void volleyStringRequest(){
 
-        String  REQUEST_TAG = "com.pnw.ds.tentativereapp.Activities.LoginActivity";
+        String  REQUEST_TAG = "Activities.LoginActivity";
         progressDialog.setMessage("Loading...");
         progressDialog.show();
 
-        StringRequest strReq = new StringRequest(Request.Method.POST, AppConnection.URL_LOGIN,
-                new Response.Listener<String>() {
+        HashMap<String,String> loginparam = new HashMap<String,String>();
+        loginparam.put("username",E_mail.getText().toString());
+        loginparam.put("password",Password.getText().toString());
+
+        JsonObjectRequest jobjReq = new JsonObjectRequest(Request.Method.POST, AppConnection.URL_LOGIN,new JSONObject(loginparam),
+                new Response.Listener<JSONObject>() {
                     @Override
-                    public void onResponse(String response)
+                    public void onResponse(JSONObject response)
                     {
                         try {
-                            JSONObject out = new JSONObject(response);
-                            Boolean valid = out.getBoolean("error");
+                            Boolean valid = response.getBoolean("success");
 
-                            if(!valid){
-                                String message = out.getString("message");
-                                String data = out.getString("user");
-                                String uId = out.getString("id");
-                                Toast.makeText(getApplicationContext(),message,
+                            if(valid){
+
+                                // String message = response.getString("message");
+                                String data = response.getString("username");
+                                String uId = response.get("key").toString();
+                                Toast.makeText(getApplicationContext(),"success",
                                         Toast.LENGTH_LONG).show();
 
                                 Intent intent =new Intent(LoginActivity.this,MainActivity.class);
                                 intent.putExtra("for_user",data);
-                                intent.putExtra("for_id",uId);
+
+                                SharedPreferences pref = getSharedPreferences("MyPref", 0); // 0 - for private mode
+                                SharedPreferences.Editor editor = pref.edit();
+
+                                editor.putString("user_key", uId); // Storing string
+                                editor.commit();
 
                                 startActivity(intent);
                                 finish();
                             }
-                            else if(valid){
+                            else if(!valid){
 
                                 alertTextView.setText(alert);
                             }
@@ -129,22 +140,9 @@ public class LoginActivity extends AppCompatActivity {
                 VolleyLog.d(TAG, "Error: " + error.getMessage());
                 progressDialog.hide();
             }
-        })
-        {
-            @Override
-            protected Map<String, String> getParams()
-            {
-                // Posting params to register url
-                Map<String, String> params = new HashMap<String, String>();
-
-                params.put("email", E_mail.getText().toString().trim());
-                params.put("password", Password.getText().toString().trim());
-                return params;
-            }
-
-        };
+        });
         // Adding String request to request queue
-        AppSingleton.getInstance(getApplicationContext()).addToRequestQueue(strReq, REQUEST_TAG);
+        AppSingleton.getInstance(getApplicationContext()).addToRequestQueue(jobjReq, REQUEST_TAG);
     }
 
     public void volleyCacheRequest(String url){
