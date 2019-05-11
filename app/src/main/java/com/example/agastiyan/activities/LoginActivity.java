@@ -46,6 +46,7 @@ public class LoginActivity extends AppCompatActivity {
     private TextView alertTextView,outputTextView;
     private EditText E_mail,Password;
     private ImageView outputImageView;
+    private SharedPreferences prefs;
 
     public static final String alert = "Username or Password not valid";
     @Override
@@ -54,6 +55,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        prefs = getSharedPreferences("MyPref", 0); // 0 - for private mode
         progressDialog = new ProgressDialog(this);
 
         stringRequestButton = (Button)findViewById(R.id.bt_login);
@@ -67,6 +69,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v)
             {
 
+                /*old colors <!--#ff2068, #6d0094, #ad1a7f>*/
                 volleyStringRequest();
                 /*Intent intent =new Intent(LoginActivity.this,MainActivity.class);
                 intent.putExtra("for_user","kingsley");
@@ -102,17 +105,17 @@ public class LoginActivity extends AppCompatActivity {
                                 // String message = response.getString("message");
                                 String data = response.getString("username");
                                 String uId = response.get("key").toString();
+
+                                SharedPreferences.Editor editor = prefs.edit();
+
+                                editor.putString("user_key",uId);
+                                editor.commit();
+
                                 Toast.makeText(getApplicationContext(),"success",
                                         Toast.LENGTH_LONG).show();
 
                                 Intent intent =new Intent(LoginActivity.this,MainActivity.class);
                                 intent.putExtra("for_user",data);
-
-                                SharedPreferences pref = getSharedPreferences("MyPref", 0); // 0 - for private mode
-                                SharedPreferences.Editor editor = pref.edit();
-
-                                editor.putString("user_key", uId); // Storing string
-                                editor.commit();
 
                                 startActivity(intent);
                                 finish();

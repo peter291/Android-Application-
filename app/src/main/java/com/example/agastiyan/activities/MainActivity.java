@@ -1,5 +1,6 @@
 package com.example.agastiyan.activities;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -11,6 +12,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.webkit.WebView;
+import android.widget.Toast;
 
 import com.example.agastiyan.fragments.HomeScreen;
 import com.example.agastiyan.fragments.ProfileScreen;
@@ -19,6 +22,9 @@ import com.example.agastiyan.R;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    SharedPreferences pref;
+    WebView mywebview;//
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +42,15 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        pref = getSharedPreferences("MyPref", 0); // 0 - for private mode
+        /*
+        Toast.makeText(getApplicationContext(),pref.getString("user_key",""),
+                Toast.LENGTH_LONG).show();*/
+
+        mywebview = (WebView) findViewById(R.id.webView);
+
+        mywebview.getSettings().setJavaScriptEnabled(true);
+        mywebview.loadUrl("http://www.agastiyan.com/");
         // displaySelectedScreen(R.id.nav_home);
     }
 

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Agastiyan-ver-1.0</string>
+    <string name="app_name">Agastiyan</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Agastiyan</string>
@@ -34,4 +34,6 @@
     <string name="msg_no_ticket_found">No Product found. Try scanning valid data/</string>
     <string name="lbl_scan_activity">Scan QR Code</string>
 
+    <!-- The class name to the ScrollingChildBehavior required for AppBarLayout -->
+    <string name="appbar_scrolling_view_behavior" translatable="false">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>
 </resources>

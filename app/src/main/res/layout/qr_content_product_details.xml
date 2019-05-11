@@ -12,12 +12,11 @@
         android:id="@+id/txt_error"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerInParent="true"
+        android:layout_centerVertical="true"
         android:gravity="center_horizontal"
+        android:padding="@dimen/dimen_20"
         android:text="@string/msg_no_ticket_found"
         android:textColor="@android:color/white"
-        android:padding="@dimen/dimen_20"
         android:textSize="16dp"
         android:visibility="gone" />
 
@@ -26,8 +25,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginLeft="@dimen/dimen_20"
-        android:layout_marginRight="@dimen/dimen_20"
         android:layout_marginTop="@dimen/dimen_20"
+        android:layout_marginRight="@dimen/dimen_20"
         android:background="@android:color/transparent"
         android:orientation="vertical"
         android:paddingTop="@dimen/dimen_10"
@@ -37,22 +36,19 @@
             android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:ellipsize="end"
             android:fontFamily="sans-serif-condensed"
+            android:maxLines="1"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
             android:textAllCaps="true"
             android:textColor="#111"
-            android:maxLines="1"
-            android:ellipsize="end"
             android:textSize="@dimen/lbl_movie_name" />
 
-        <ImageView
-            android:id="@+id/poster"
+        <VideoView
+            android:id="@+id/videoView"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/img_poster_height"
-            android:layout_marginBottom="@dimen/activity_margin"
-            android:layout_marginTop="@dimen/activity_margin"
-            android:scaleType="centerCrop" />
+            android:layout_height="wrap_content" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -171,21 +167,6 @@
 
     </com.example.agastiyan.scan.activities.ProductView>
 
-    <Button
-        android:id="@+id/btn_buy"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="10dp"
-        android:background="@android:color/transparent"
-        android:fontFamily="sans-serif-condensed"
-        android:foreground="?attr/selectableItemBackground"
-        android:paddingLeft="@dimen/activity_margin"
-        android:paddingRight="@dimen/activity_margin"
-        android:textColor="@color/colorPrimary"
-        android:textSize="26dp" />
-
     <ProgressBar
         android:id="@+id/progressBar"
         android:layout_width="@dimen/dimen_40"
@@ -193,5 +174,6 @@
         android:layout_centerInParent="true"
         android:indeterminateTint="@android:color/white"
         android:indeterminateTintMode="src_atop"
+        android:scrollbars="vertical"
         android:visibility="visible" />
 </RelativeLayout>

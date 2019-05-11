@@ -8,4 +8,5 @@ public class AppConnection {
     //https://bookshelfimage-223504.appspot.com
     // Server user login url
     public static String URL_LOGIN = "https://agasti-cloud-api.appspot.com/rest/product/login";
+    public static String MAIN_API = "https://agasti-cloud-api.appspot.com/rest/product/";
 }
